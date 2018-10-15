@@ -8,6 +8,10 @@
 
 :root {
     /* colors */
+    --og-color-light: #CCE7FF;
+    --og-color-dark: #0F3557;
+    --color-light: var(--og-color-light);
+    --color-dark: var(--og-color-dark);
 
     /* opacity */
 
@@ -27,10 +31,13 @@
 html {
     font-size: 16px;
     line-height: 1.5;
-    font-family: Helvetica, arial, sans-serif;
+    font-family: 'Work Sans', Helvetica, arial, sans-serif;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    color: var(--color-dark);
+    background-color: var(--color-light);
+    font-feature-settings: "zero" 1;
 }
 
 *,
@@ -249,7 +256,10 @@ input::placeholder {
 */
 
 .c-logo {
-
+    display: flex;
+    font-size: 16px;
+    line-height: 16px;
+    align-items: center;
 }
 
 /*
@@ -259,11 +269,13 @@ input::placeholder {
 */
 
 .c-sun {
-
+    width: 22px;
+    height: 22px;
+    fill: var(--color-dark);
 }
 
 .c-logo .c-sun {
-
+    margin-right: 8px;
 }
 
 /*
@@ -272,11 +284,72 @@ input::placeholder {
     Main app wrapper
 */
 
+.c-app {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    padding: 32px;
+    margin: 0 auto;
+    height: 100vh;
+}
+
+.c-app__summary {
+    font-size: 28px;
+    line-height: 40px;
+}
+
 /*
     Component: Horizon
     ---
     Horizon with sun visualisation
 */
+
+.c-horizon {
+    margin-top: auto;
+}
+
+.c-horizon__line {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--color-dark);
+    margin-bottom: 34px;
+    padding-top: 8px;
+}
+
+.c-horizon__time {
+    font-size: 12px;
+    line-height: 14px;
+}
+
+.c-horizon__sky-wrapper {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    padding-top: 22px;
+    padding-right: 40px;
+}
+
+.c-horizon__sky {
+    position: relative;
+    height: 100%;
+}
+
+.c-horizon__sun {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    transform: translateY(22px);
+}
+
+.c-horizon__sun::before {
+    content: attr(data-time);
+    font-size: 12px;
+    line-height: 14px;
+    margin-bottom: 8px;
+}
 
 /*------------------------------------*\
 #UTILITIES
@@ -287,6 +360,10 @@ input::placeholder {
     Mute with opacity
 */
 
+.u-muted {
+    opacity: 0.6;
+}
+
 /*------------------------------------*\
 #STATES
 \*------------------------------------*/
@@ -296,6 +373,10 @@ input::placeholder {
 */
 
 /* Night version: just switch the light and dark vars */
+.is-night {
+    --color-light: var(--og-color-dark);
+    --color-dark: var(--og-color-light);
+ }
 
 /*------------------------------------*\
 #MEDIA
