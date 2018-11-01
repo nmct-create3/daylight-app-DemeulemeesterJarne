@@ -54,13 +54,13 @@ html {
 */
 
 ::-moz-selection {
-    background: red;
+    background: var(--color-dark);
     color: white;
     text-shadow: none;
 }
 
 ::selection {
-    background: red;
+    background: var(--color-dark);
     color: white;
     text-shadow: none;
 }
@@ -290,7 +290,13 @@ input::placeholder {
     max-width: 400px;
     padding: 32px;
     margin: 0 auto;
-    height: 100vh;
+    min-height: 100vh;
+    transition: opacity 0.2s ease-in;
+    opacity: 0;
+}
+
+.is-loaded .c-app {
+    opacity: 1;
 }
 
 .c-app__summary {
@@ -341,6 +347,11 @@ input::placeholder {
     justify-content: center;
     align-items: center;
     width: 40px;
+    transform: translateY(44px);
+    transition: transform 1s;
+}
+
+.is-loaded .c-horizon__sun {
     transform: translateY(22px);
 }
 
